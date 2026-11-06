@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAILSAFE - Smart Railway Safety</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#081525;
+ color:white;
+}
+header{
+ padding:22px;
+ background:#102c48;
+ text-align:center;
+}
+header h1{color:#42d9ff}
+nav{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:15px;
+ padding:15px;
+ background:#142b40;
+}
+nav a{color:white;text-decoration:none}
+section{
+ padding:25px 18px;
+ margin:18px auto;
+ max-width:950px;
+ background:#122b43;
+ border-radius:14px;
+}
+h2{color:#45d9ff}
+p{line-height:1.7;color:#d5e3ee}
+button{
+ padding:12px 18px;
+ border:0;
+ border-radius:8px;
+ background:#08b8df;
+ color:#061525;
+ font-weight:bold;
+ margin:5px;
+ cursor:pointer;
+}
+.panel{
+ background:#071725;
+ padding:15px;
+ border-radius:10px;
+ margin-top:15px;
+}
+.scene{
+ height:260px;
+ position:relative;
+ overflow:hidden;
+ background:linear-gradient(#193d59,#102333);
+ border-radius:12px;
+ margin:15px 0;
+}
+.train{
+ position:absolute;
+ width:190px;
+ height:75px;
+ background:#dce7ef;
+ color:#102333;
+ border-radius:12px 12px 5px 5px;
+ left:10%;
+ bottom:75px;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ font-weight:bold;
+ transition:left 2s;
+}
+.window{
+ background:#2496bb;
+ width:35px;
+ height:25px;
+ border-radius:4px;
+}
+.wheel{
+ position:absolute;
+ bottom:-9px;
+ width:24px;
+ height:24px;
+ border-radius:50%;
+ background:#26343f;
+ border:4px solid #91a4b5;
+}
+.platform{
+ position:absolute;
+ bottom:0;
+ height:60px;
+ width:100%;
+ background:#777f88;
+}
+.barrier{
+ position:absolute;
+ bottom:60px;
+ left:65%;
+ height:100px;
+ width:9px;
+ background:#ffcf45;
+ transition:height 1s;
+}
+.walkway{
+ position:absolute;
+ height:16px;
+ width:0;
+ left:52%;
+ bottom:72px;
+ background:#44e4ae;
+ transition:width 1.5s;
+}
+.status{
+ color:#55e6ae;
+ font-weight:bold;
+ margin:12px 0;
+}
+.steps{
+ padding:12px;
+ border-left:3px solid #35c9ed;
+ margin:12px 0;
+ background:#0a2035;
+}
+.diagram{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:8px;
+ margin:15px 0;
+}
+.part{
+ background:#173d58;
+ padding:13px;
+ border:1px solid #45d9ff;
+ border-radius:8px;
+ text-align:center;
+ min-width:100px;
+}
+.arrow{color:#48e7a9;font-size:22px}
+.gear{
+ width:60px;height:60px;
+ border:7px dashed #f5c94c;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ margin:auto;
+ animation:rotate 3s linear infinite;
+}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.rack{
+ width:100px;
+ height:15px;
+ background:repeating-linear-gradient(
+  90deg,#42d9ff 0 8px,#163c54 8px 13px);
+ animation:moveRack 2s infinite alternate;
+}
+@keyframes moveRack{
+ from{transform:translateX(-12px)}
+ to{transform:translateX(12px)}
+}
+.rotor{
+ width:65px;height:65px;
+ border:5px solid #49e5aa;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ animation:rotate 1.5s linear infinite;
+}
+footer{text-align:center;padding:25px;color:#aabccc}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🚆 RAILSAFE</h1>
+<h3>AI-Based Railway Platform Safety System</h3>
+<p>Smart Safety Barrier | Movable Walkway | Electricity Generation</p>
+</header>
+
+<nav>
+<a href="#problem">Problem</a>
+<a href="#solution">Solution</a>
+<a href="#sensors">Sensors</a>
+<a href="#working">Working Video</a>
+<a href="#energy">Electricity</a>
+<a href="#benefits">Benefits</a>
+</nav>
+
+<section id="problem">
+<h2>1. Problem Statement</h2>
+<p>
+Railway passengers face safety risks while entering and
+exiting trains. The gap between the train and platform,
+crowded platforms and accidental falls can cause serious
+problems. Traditional platforms do not always provide
+automatic protection.
+</p>
+</section>
+
+<section id="solution">
+<h2>2. Our Innovative Solution</h2>
+<p>
+We propose an Automatic Railway Platform Safety Barrier
+System with an extendable and retractable movable walkway.
+It connects the train and platform after the train stops.
+Sensors control the system and help passengers move safely.
+</p>
+<p>
+An additional feature converts some of the mechanical
+energy from safety-door movement into electrical energy.
+</p>
+</section>
+
+<section id="sensors">
+<h2>3. Smart Sensors</h2>
+<div class="steps">
+<b>Train Position Sensor</b>
+<p>Checks whether the train has stopped at the correct position.</p>
+</div>
+<div class="steps">
+<b>Proximity Sensor</b>
+<p>Checks the distance and alignment between the train and platform.</p>
+</div>
+<div class="steps">
+<b>Obstacle Sensor</b>
+<p>Detects objects or passengers in the walkway and door movement area.</p>
+</div>
+<div class="steps">
+<b>Pressure Sensor</b>
+<p>Can detect passenger presence on the movable walkway.</p>
+</div>
+<div class="steps">
+<b>Door Position Sensor</b>
+<p>Confirms whether the safety doors are completely open or closed.</p>
+</div>
+</section>
+
+<section id="working">
+<h2>4. Live Working Demonstration</h2>
+<p>
+Watch the complete proposed working sequence of our railway
+safety system.
+</p>
+
+<div class="scene">
+<div class="train" id="train">
+TRAIN
+<div class="window"></div>
+<div class="window"></div>
+<div class="wheel"></div>
+</div>
+<div class="walkway" id="walkway"></div>
+<div class="barrier" id="barrier"></div>
+<div class="platform"></div>
+</div>
+
+<div class="status" id="status">
+Ready to start demonstration.
+</div>
+
+<button onclick="play()">▶️ Play Working Video</button>
+<button onclick="pause()">⏸️ Pause</button>
+<button onclick="reset()">↺ Replay</button>
+
+<div class="panel">
+<h3 id="stepTitle">Step 1: Train Arrival</h3>
+<p id="stepText">
+The train approaches the platform.
+The position sensors monitor its arrival.
+</p>
+</div>
+</section>
+
+<section>
+<h2>5. Complete Working Process</h2>
+<div class="steps">
+<b>Step 1 - Train Arrival</b>
+<p>The train arrives at the railway platform.</p>
+</div>
+<div class="steps">
+<b>Step 2 - Position Detection</b>
+<p>Sensors confirm that the train has stopped at the correct position.</p>
+</div>
+<div class="steps">
+<b>Step 3 - Safety Doors Open</b>
+<p>Automatic platform safety barriers open after the train is secured.</p>
+</div>
+<div class="steps">
+<b>Step 4 - Movable Walkway Extends</b>
+<p>A movable walkway extends between the train and platform to bridge the gap.</p>
+</div>
+<div class="steps">
+<b>Step 5 - Passenger Movement</b>
+<p>Passengers can safely enter and exit the train using the walkway.</p>
+</div>
+<div class="steps">
+<b>Step 6 - Walkway Retracts</b>
+<p>After the passenger area is clear, the movable walkway moves back into its housing.</p>
+</div>
+<div class="steps">
+<b>Step 7 - Safety Doors Close</b>
+<p>The sensors confirm that the walkway is retracted and the area is clear. The safety barriers close.</p>
+</div>
+<div class="steps">
+<b>Step 8 - Train Departure</b>
+<p>The system confirms that all barriers are closed and the train can depart after railway safety checks.</p>
+</div>
+</section>
+
+<section id="energy">
+<h2>6. Electricity Generation Mechanism</h2>
+
+<p>
+Our additional feature uses the movement of the automatic
+safety doors to generate electricity.
+</p>
+
+<h3>Mechanical Energy Conversion</h3>
+
+<div class="panel">
+<h3>Step 1: Door Movement</h3>
+<p>
+When the automatic safety door opens or closes,
+its linear movement drives a connected rack mechanism.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 2: Rack and Pinion Gear</h3>
+<div class="diagram">
+<div class="part">
+<div class="rack"></div>
+Rack
+</div>
+<div class="arrow">→</div>
+<div class="part">
+<div class="gear">⚙️</div>
+Pinion Gear
+</div>
+</div>
+<p>
+The rack moves in a straight line. Its teeth engage with
+the pinion gear, converting linear movement into rotational
+movement.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 3: One-Way Clutch</h3>
+<p>
+A one-way clutch helps transfer rotation to the generator
+in the required direction during door movement.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 4: Electric Generator</h3>
+<div class="diagram">
+<div class="part">Rotating Shaft</div>
+<div class="arrow">→</div>
+<div class="part">
+<div class="rotor">N S</div>
+Generator
+</div>
+</div>
+<p>
+The rotating shaft drives the generator. Inside the
+generator, relative movement between magnets and coils
+induces electrical voltage through electromagnetic induction.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 5: Rectifier</h3>
+<p>
+The electrical output is passed through a rectifier circuit
+to obtain DC electricity suitable for storage.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 6: Energy Storage</h3>
+<p>
+The DC output can be stored in a rechargeable battery
+or capacitor through a suitable charging and protection circuit.
+</p>
+</div>
+
+<div class="panel">
+<h3>Step 7: Electricity Usage</h3>
+<p>
+The stored energy can support low-power applications
+such as indicator lights, small sensors or monitoring displays.
+</p>
+</div>
+
+<h3>Complete Energy Flow</h3>
+<div class="diagram">
+<div class="part">Door Movement</div>
+<div class="arrow">→</div>
+<div class="part">Rack</div>
+<div class="arrow">→</div>
+<div class="part">Pinion</div>
+<div class="arrow">→</div>
+<div class="part">Generator</div>
+<div class="arrow">→</div>
+<div class="part">Rectifier</div>
+<div class="arrow">→</div>
+<div class="part">Battery</div>
+</div>
+
+<p>
+Note: This is a proposed energy recovery system.
+It recovers a small amount of mechanical energy during
+door operation; it does not produce free energy.
+</p>
+</section>
+
+<section id="benefits">
+<h2>7. Main Benefits</h2>
+<div class="steps">Improves passenger safety.</div>
+<div class="steps">Reduces accidental falls onto railway tracks.</div>
+<div class="steps">Provides a movable walkway to bridge the platform gap.</div>
+<div class="steps">Uses sensors for automatic operation.</div>
+<div class="steps">Helps elderly passengers and children.</div>
+<div class="steps">Recovers some energy from safety-door movement.</div>
+</section>
+
+<section>
+<h2>8. Conclusion</h2>
+<p>
+Our proposed RAILSAFE system aims to make railway platforms
+safer and smarter. By combining automatic safety barriers,
+a movable walkway, smart sensors and mechanical energy
+recovery, we aim to improve passenger safety and introduce
+an innovative railway solution.
+</p>
+</section>
+
+<footer>
+RAILSAFE | IDT Engineering Project
+<br>
+Smart Railway Safety for Everyone
+</footer>
+
+<script>
+let timer=null;
+let current=0;
+
+const scenes=[
+{
+title:"Step 1: Train Arrival",
+text:"The train approaches the platform. Train position sensors monitor its arrival.",
+status:"Train approaching the platform."
+},
+{
+title:"Step 2: Correct Position",
+text:"The train stops. Sensors confirm the correct stopping position and alignment.",
+status:"Train position confirmed."
+},
+{
+title:"Step 3: Safety Doors Open",
+text:"The automatic platform safety barrier doors open.",
+status:"Safety doors opening."
+},
+{
+title:"Step 4: Movable Walkway Extends",
+text:"The movable walkway extends from its housing and bridges the gap between train and platform.",
+status:"Walkway extending."
+},
+{
+title:"Step 5: Passenger Movement",
+text:"Passengers enter and exit the train using the extended walkway. Obstacle sensors monitor the area.",
+status:"Passengers can move safely."
+},
+{
+title:"Step 6: Walkway Retracts",
+text:"After the walkway is clear, it retracts back into its housing.",
+status:"Walkway returning."
+},
+{
+title:"Step 7: Safety Doors Close",
+text:"Sensors confirm that the walkway is retracted and the area is clear. The safety doors close.",
+status:"Safety doors closing."
+},
+{
+title:"Step 8: Train Departure",
+text:"The system verifies the closed barrier and completes its safety checks before train departure.",
+status:"System ready for train departure."
+},
+{
+title:"Step 9: Electricity Generation",
+text:"Door movement drives a rack and pinion mechanism, which rotates a generator. A rectifier conditions its output and energy can be stored in a battery.",
+status:"Energy recovery mechanism demonstrated."
+}
+];
+
+function render(){
+let s=scenes[current];
+document.getElementById("stepTitle").innerText=s.title;
+document.getElementById("stepText").innerText=s.text;
+document.getElementById("status").innerText=s.status;
+
+let door=document.getElementById("barrier");
+let walk=document.getElementById("walkway");
+let train=document.getElementById("train");
+
+door.style.height=current>=3 && current<=5?"0px":"100px";
+walk.style.width=current>=3 && current<=4?"40%":"0px";
+
+if(current===0) train.style.left="10%";
+if(current===1) train.style.left="40%";
+if(current>=2) train.style.left="40%";
+}
+
+function play(){
+if(timer!==null)return;
+if(current>=scenes.length)current=0;
+render();
+timer=setInterval(()=>{
+current++;
+if(current>=scenes.length){
+clearInterval(timer);
+timer=null;
+return;
+}
+render();
+},3500);
+}
+
+function pause(){
+clearInterval(timer);
+timer=null;
+}
+
+function reset(){
+pause();
+current=0;
+render();
+}
+
+render();
+</script>
+
+</body>
+</html>
